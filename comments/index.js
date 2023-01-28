@@ -3,10 +3,29 @@ const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
 
 const app = express();
+app.use(bodyParser.json());
 
-app.get("/posts/:id/comments", (req, res) => {});
+const commentsByPostId = {};
 
-app.post("posts/:id/comments", (req, res) => {});
+app.get("/posts/:id/comments", (req, res) => {
+  const id = req.params.id;
+  comments = commentsByPostId[id] || [];
+  res.send(comments);
+});
+
+app.post("posts/:id/comments", (req, res) => {
+  const id = req.params.id;
+
+  const commentId = randomBytes(4).toString("hex");
+
+  const { content } = req.content;
+
+  const comment = commentsByPostId[id] || [];
+  comment?.push({ id: commentId, content });
+  commentsByPostId[id] = comment;
+
+  res.status(201).send(commentsByPostId[id]);
+});
 
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
