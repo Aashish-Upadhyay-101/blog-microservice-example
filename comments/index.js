@@ -13,12 +13,12 @@ app.get("/posts/:id/comments", (req, res) => {
   res.send(comments);
 });
 
-app.post("posts/:id/comments", (req, res) => {
+app.post("/posts/:id/comments", (req, res) => {
   const id = req.params.id;
 
   const commentId = randomBytes(4).toString("hex");
 
-  const { content } = req.content;
+  const { content } = req.body;
 
   const comment = commentsByPostId[id] || [];
   comment?.push({ id: commentId, content });
@@ -27,6 +27,6 @@ app.post("posts/:id/comments", (req, res) => {
   res.status(201).send(commentsByPostId[id]);
 });
 
-app.listen(5000, () => {
+app.listen(4001, () => {
   console.log("Server running on http://localhost:5000");
 });
