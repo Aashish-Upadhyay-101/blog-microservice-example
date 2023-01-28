@@ -1,7 +1,13 @@
 import React from "react";
+import PostCreate from "./PostCreate";
 
 const App = () => {
-  return <div>Basic blog</div>;
+  return (
+    <div className="container">
+      <h1>Blog</h1>
+      <PostCreate />
+    </div>
+  );
 };
 
 export default App;
