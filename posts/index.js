@@ -12,28 +12,28 @@ app.use(cors());
 const posts = {};
 
 app.get("/posts", (req, res) => {
-  res.send(posts);
+    res.send(posts);
 });
 
 app.post("/posts", async (req, res) => {
-  const id = randomBytes(4).toString("hex");
-  const { title } = req.body;
-  posts[id] = {
-    id,
-    title,
-  };
+    const id = randomBytes(4).toString("hex");
+    const { title } = req.body;
+    posts[id] = {
+        id,
+        title,
+    };
 
-  await axios.post("http://localhost:4003/events", {
-    type: "PostCreated",
-    data: {
-      id,
-      title,
-    },
-  });
+    await axios.post("http://localhost:4003/events", {
+        type: "PostCreated",
+        data: {
+            id,
+            title,
+        },
+    });
 
-  res.status(201).send(posts[id]);
+    res.status(201).send(posts[id]);
 });
 
 app.listen(4000, () => {
-  console.log(`Server on http://localhost:4000`);
+    console.log(`Server on http://localhost:4000`);
 });
