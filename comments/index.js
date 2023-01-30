@@ -39,6 +39,11 @@ app.post("/posts/:id/comments", async (req, res) => {
     res.status(201).send(commentsByPostId[id]);
 });
 
+app.post("/events", (req, res) => {
+    console.log("Event Received", req.body.type);
+    res.send({});
+});
+
 app.listen(4001, () => {
-    console.log("Server running on http://localhost:5000");
+    console.log("Server running on http://localhost:4001");
 });
