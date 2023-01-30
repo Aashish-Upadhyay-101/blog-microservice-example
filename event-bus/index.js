@@ -10,6 +10,7 @@ app.post("/events", (req, res) => {
 
     axios.post("http://localhost:4000/events", event); // post server
     axios.post("http://localhost:4001/events", event); // comment server
+    axios.post("http://localhost:4002/events", event); // query server
 
     res.send({ status: "OK" });
 });
