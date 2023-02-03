@@ -33,6 +33,7 @@ app.post("/posts/:id/comments", async (req, res) => {
             id: commentId,
             postId: id,
             content,
+            status: "pending",
         },
     });
 
