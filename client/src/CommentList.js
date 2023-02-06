@@ -5,7 +5,13 @@ const CommentList = ({ id, comments }) => {
     console.log(comments);
     const renderComments = comments?.map((comment) => (
         <ul key={comment.id}>
-            <li>{comment.content}</li>
+            {comment.status === "rejected" ? (
+                <li>Comment Rejected</li>
+            ) : comment.status === "pending" ? (
+                <li>Comment is pending, and under some checks</li>
+            ) : (
+                <li>{comment.content}</li>
+            )}
         </ul>
     ));
 
